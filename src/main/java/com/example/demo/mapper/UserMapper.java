@@ -16,8 +16,8 @@ public interface UserMapper {
     //@Select("select * from user where id = #{id}")
     public Map getUserName(int id);
 
-    @Insert("insert into user values(#{id},#{name})")
-    public int addUser(@Param("id") int id, @Param("name") String name);
+    @Insert("insert into user(name) values(#{name})")
+    public int addUser( @Param("name") String name);
 
     @Select("select * from user")
     public List<User> getUserInfo();

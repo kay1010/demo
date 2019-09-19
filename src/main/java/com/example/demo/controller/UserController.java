@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.User;
 import com.example.demo.mapper.UserMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -31,22 +33,17 @@ public class UserController {
     @GetMapping("list")
     @ResponseBody
     public List<User> getAllUser(HttpServletRequest request){
-        HttpSession session=request.getSession();
-        if(session.getAttribute("name")!=null&& session.getAttribute("name").equals("fkk")){
+            logger.info("-------getAllUser---------");
             return userMapper.getUserInfo();
-        }else {
-            throw new RuntimeException();
-        }
-
 
     }
 
     @GetMapping("addUser")
     @ResponseBody
-    public int addUser(String name,int id,HttpServletRequest request){
-        HttpSession session=request.getSession();
-        session.setAttribute("name","fkk");
-        return userMapper.addUser(id,name);
+    public String addUser(String name){
+         userMapper.addUser(name);
+
+         return "the user added success";
 
     }
 }

@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/fkk?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password: fkk
+    password: Fffkiki@163
     driver-class-name: com.mysql.jdbc.Driver
   redis:
     port: 6379
