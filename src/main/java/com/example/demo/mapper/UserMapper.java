@@ -14,10 +14,10 @@ import java.util.Map;
 public interface UserMapper {
 
     //@Select("select * from user where id = #{id}")
-    public Map getUserName(int id);
+    public Map getUser(String name,String password);
 
-    @Insert("insert into user(name) values(#{name})")
-    public int addUser( @Param("name") String name);
+    @Insert("insert into user(name,password,address,role) values(#{user.name},#{user.password},#{user.address},#{user.role})")
+    public int addUser(@Param("user") User user);
 
     @Select("select * from user")
     public List<User> getUserInfo();
